@@ -2326,6 +2326,30 @@ class SmartCash(Coin):
     DAEMON = daemon.SmartCashDaemon
     SESSIONCLS = SmartCashElectrumX
 
+class SmartCashTestnet(Coin):
+    NAME = "tSmartCash"
+    SHORTNAME = "tSMART"
+    NET = "testnet"
+    P2PKH_VERBYTE = bytes.fromhex("41")
+    P2SH_VERBYTES = [bytes.fromhex("15")]
+    WIF_BYTE = bytes.fromhex("c1")
+    GENESIS_HASH = ('0000027235b5679bcd28c90d03d4bf1a'
+                    '9ba4c07c4efcc1c87d6c68cce25e6e5d')
+    DESERIALIZER = lib_tx.DeserializerSmartCash
+    RPC_PORT = 19679
+    REORG_LIMIT = 5000
+    TX_COUNT = 1115016
+    TX_COUNT_HEIGHT = 541656
+    TX_PER_BLOCK = 1
+    ENCODE_CHECK = partial(Base58.encode_check,
+                           hash_fn=lib_tx.DeserializerSmartCash.keccak)
+    DECODE_CHECK = partial(Base58.decode_check,
+                           hash_fn=lib_tx.DeserializerSmartCash.keccak)
+    HEADER_HASH = lib_tx.DeserializerSmartCash.keccak
+    DAEMON = daemon.SmartCashDaemon
+    SESSIONCLS = SmartCashElectrumX
+
+
     @classmethod
     def header_hash(cls, header):
         '''Given a header return the hash.'''
