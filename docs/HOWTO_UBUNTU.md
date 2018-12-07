@@ -45,7 +45,8 @@ sudo apt install python3-leveldb libleveldb-dev
 ## Install required Python packages
 
 ```
-pip3 install --upgrade pip setuptools wheel
+sudo apt install python3-pip
+pip3 install --upgrade setuptools wheel
 pip3 install --upgrade aiorpcX attrs plyvel pylru aiohttp pycryptodomex
 ```
 
