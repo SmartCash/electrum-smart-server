@@ -142,7 +142,7 @@ nano /etc/electrumx.conf
 and configure it according to your environment.
 
 ```
-COIN = SmartCash
+COIN = SmartCash   (use tSmartCash and add NET = testnet for testnet) 
 DAEMON_URL = user:pass@127.0.0.1:9679
 DB_DIRECTORY = ~/.electrumx/db
 DB_ENGINE = leveldb
