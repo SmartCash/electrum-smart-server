@@ -2326,6 +2326,13 @@ class SmartCash(Coin):
     DAEMON = daemon.SmartCashDaemon
     SESSIONCLS = SmartCashElectrumX
 
+    
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return the hash.'''
+        return cls.HEADER_HASH(header)
+    
+    
 class SmartCashTestnet(Coin):
     NAME = "tSmartCash"
     SHORTNAME = "tSMART"
