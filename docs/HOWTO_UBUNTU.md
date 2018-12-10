@@ -58,8 +58,7 @@ pip3 install --upgrade aiorpcX attrs plyvel pylru aiohttp pycryptodomex
 Clone the ElectrumX code from a GitHub repository using git:
 
 ```
-mkdir ~/source
-cd ~/source
+mkdir ~/source && cd ~/source
 git clone https://github.com/SmartCash/electrum-smart-server.git
 cd electrumx
 ```
@@ -73,8 +72,7 @@ python3 setup.py install
 Next, create a data folder where the blockchain data will be stored:
 
 ```
-mkdir ~/.electrumx
-mkdir ~/.electrumx/db
+mkdir ~/.electrumx && mkdir ~/.electrumx/db
 ```
 
 
@@ -120,14 +118,27 @@ Open a sudo session and copy a service file from the ElectrumX repo to your Syst
 
 ```
 sudo -s
-cp ~/source/electrumx/contrib/systemd/electrumx.service /lib/systemd/system/
+nano /lib/systemd/system/electrumx.service
 ```
 
 Edit the file to match your setup:
 
 ```
-nano /lib/systemd/system/electrumx.service
+[Unit]
+Description=Electrumx
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/electrumx.conf
+ExecStart=/home/electrumx/source/electrumx/electrumx_server
+User=electrumx
+LimitNOFILE=8192
+TimeoutStopSec=30min
+
+[Install]
+WantedBy=multi-user.target
 ```
+
 
 You need to edit at least ExecStart and User variables.
 
@@ -165,12 +176,27 @@ SSL_PORT = 50002
 TCP_PORT = 50001
 
 # Testnet
-Net = Testnet
-DAEMON_URL = user:pass@127.0.0.1:19679
-DONATION_ADDRESS = <your_tSmartcash_address>
-SSL_PORT = 51002 
-TCP_PORT = 51001
+# Net = Testnet
+# DAEMON_URL = user:pass@127.0.0.1:19679
+# DONATION_ADDRESS = <your_tSmartcash_address>
+# SSL_PORT = 51002 
+# TCP_PORT = 51001
 
+```
+
+Create a banner File
+
+```
+nano ~/.electrumx/banner
+```
+
+Example
+
+```
+Welcome to electrumX.smartcash.cc
+SmartCash Core: $DAEMON_VERSION
+ElectrumX Server: $SERVER_VERSION
+Support: https://discord.gg/BDUh8jr
 ```
 
 Start the service:
