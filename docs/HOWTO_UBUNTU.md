@@ -142,25 +142,28 @@ nano /etc/electrumx.conf
 and configure it according to your environment.
 
 ```
-COIN = SmartCash   (use tSmartCash and add NET = testnet for testnet) 
-DAEMON_URL = user:pass@127.0.0.1:9679
+COIN = SmartCash   
 DB_DIRECTORY = ~/.electrumx/db
 DB_ENGINE = leveldb
 USERNAME = electrumx
 ELECTRUMX = ~/source/electrumx/electrumx_server
 HOST = 0.0.0.0
-
 BANNER_FILE = ~/.electrumx/banner.txt
-DONATION_ADDRESS = <your_smartcash_address>
-
 CACHE_MB = 2048
 MAX_SESSIONS = 1024
-
 SSL_CERTFILE = ~/.electrumx/server.crt
 SSL_KEYFILE = ~/.electrumx/server.key
-
-SSL_PORT = 50002
+SSL_PORT = 50002 
 TCP_PORT = 50001
+
+DAEMON_URL = user:pass@127.0.0.1:9679
+DONATION_ADDRESS = <your_smartcash_address>
+
+# Testnet
+# NET = Testnet 
+# SSL_PORT = 51002
+# TCP_PORT = 51001
+
 ```
 
 Start the service:
