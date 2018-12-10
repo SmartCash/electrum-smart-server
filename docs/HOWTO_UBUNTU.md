@@ -24,6 +24,10 @@ timestampindex=1
 spentindex=1
 rpcuser=<random username>
 rpcpassword=<strong password>
+
+# For Testnet Only
+# testnet=1
+# addnode=45.77.209.202:19678
 ```
 
 Instal from apt
@@ -39,14 +43,13 @@ sudo apt install smartcashd
 ## Install electrumx database
 
 ```
-sudo apt install python3-leveldb libleveldb-dev
+sudo apt install python3-pip python3-leveldb libleveldb-dev
 ```
 
 ## Install required Python packages
 
 ```
-sudo apt install python3-pip
-pip3 install --upgrade setuptools wheel
+pip3 install --upgrade pip setuptools wheel && reboot
 pip3 install --upgrade aiorpcX attrs plyvel pylru aiohttp pycryptodomex
 ```
 
@@ -153,16 +156,20 @@ CACHE_MB = 2048
 MAX_SESSIONS = 1024
 SSL_CERTFILE = ~/.electrumx/server.crt
 SSL_KEYFILE = ~/.electrumx/server.key
+
+# Mainet
+Net = Mainet
+DAEMON_URL = user:pass@127.0.0.1:9679
+DONATION_ADDRESS = <your_smartcash_address>
 SSL_PORT = 50002 
 TCP_PORT = 50001
 
-DAEMON_URL = user:pass@127.0.0.1:9679
-DONATION_ADDRESS = <your_smartcash_address>
-
 # Testnet
-# NET = Testnet 
-# SSL_PORT = 51002
-# TCP_PORT = 51001
+Net = Testnet
+DAEMON_URL = user:pass@127.0.0.1:19679
+DONATION_ADDRESS = <your_tSmartcash_address>
+SSL_PORT = 51002 
+TCP_PORT = 51001
 
 ```
 
