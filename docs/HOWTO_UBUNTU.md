@@ -38,6 +38,7 @@ sudo apt install software-properties-common
 sudo add-apt-repository ppa:smartcash/ppa
 sudo apt update
 sudo apt install smartcashd
+sudo systemctl enable systemd-networkd
 ```
 
 ## Install electrumx database
@@ -50,7 +51,7 @@ sudo apt install python3-pip python3-leveldb libleveldb-dev
 
 ```
 pip3 install --upgrade pip setuptools wheel && reboot
-pip3 install --upgrade aiorpcX attrs plyvel pylru aiohttp pycryptodomex
+pip3 install --upgrade aiorpcX==0.10.1 attrs plyvel pylru aiohttp pycryptodomex
 ```
 
 ## Install and set up ElectrumX
@@ -59,7 +60,7 @@ Clone the ElectrumX code from a GitHub repository using git:
 
 ```
 mkdir ~/source && cd ~/source
-git clone https://github.com/SmartCash/electrum-smart-server.git
+git clone https://github.com/SmartCash/electrum-smart-server.git electrumx
 cd electrumx
 ```
 
@@ -87,8 +88,8 @@ cd ~/.electrumx
 and generate your key:
 
 ```
-openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-openssl rsa -passin pass:x -in server.pass.key -out server.key
+openssl genrsa -des3 -passout pass:xyzf -out server.pass.key 2048
+openssl rsa -passin pass:xyzf -in server.pass.key -out server.key
 rm server.pass.key
 openssl req -new -key server.key -out server.csr
 ```
